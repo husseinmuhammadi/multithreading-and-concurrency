@@ -18,6 +18,7 @@
 
     <modules>
         <module>simulate-thread-deadlock</module>
+        <module>thread-deadlock-in-practice</module>
     </modules>
 
     <build>
