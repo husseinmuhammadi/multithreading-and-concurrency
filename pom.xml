@@ -18,8 +18,10 @@
 
     <modules>
         <module>thread-synchronization</module>
+        <module>thread-synchronization-by-value</module>
         <module>simulate-thread-deadlock</module>
         <module>thread-deadlock-in-practice</module>
+        <module>futures-with-futuretask</module>
     </modules>
 
     <build>
