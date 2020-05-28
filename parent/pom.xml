@@ -22,6 +22,7 @@
         <module>../simulate-thread-deadlock</module>
         <module>../thread-deadlock-in-practice</module>
         <module>../futures-with-futuretask</module>
+        <module>../atomic-operations-and-multithreading</module>
     </modules>
 
     <build>
@@ -45,9 +46,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.2.3</version>
+            <groupId>com.javastudio.tutorial.concurrency</groupId>
+            <artifactId>logger</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>
