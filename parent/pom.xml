@@ -17,6 +17,7 @@
     </properties>
 
     <modules>
+        <module>../logger</module>
         <module>../thread-synchronization</module>
         <module>../thread-synchronization-by-value</module>
         <module>../simulate-thread-deadlock</module>
