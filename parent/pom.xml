@@ -24,6 +24,7 @@
         <module>../thread-deadlock-in-practice</module>
         <module>../futures-with-futuretask</module>
         <module>../atomic-operations-and-multithreading</module>
+        <module>../lock-in-multithreading</module>
     </modules>
 
     <build>
