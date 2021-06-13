@@ -11,7 +11,4 @@
     </parent>
 
     <artifactId>atomic-operations-and-multithreading</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-
-    <packaging>jar</packaging>
 </project>
