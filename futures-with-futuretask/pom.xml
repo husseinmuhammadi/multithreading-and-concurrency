@@ -11,4 +11,12 @@
     </parent>
 
     <artifactId>futures-with-futuretask</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+    </dependencies>
 </project>
