@@ -1,6 +1,5 @@
 package com.javastudio.tutorial.concurrency.account;
 
-import ch.qos.logback.core.pattern.color.BlackCompositeConverter;
 import com.javastudio.tutorial.concurrency.exception.TransactionNotAllowedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
