@@ -4,26 +4,27 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 public class SquareCalculator {
-    private static final Logger LOGGER = LoggerFactory.getLogger(SquareCalculator.class);
+    private Logger logger = LoggerFactory.getLogger(SquareCalculator.class);
 
-    private ExecutorService executor
-            // = Executors.newSingleThreadExecutor();
-            = Executors.newFixedThreadPool(2);
+    private final ExecutorService executor;
 
-    public Future<Integer> calculate(Integer input) {
+    public SquareCalculator(ExecutorService executor) {
+        this.executor = executor;
+    }
+
+    public Future<Integer> calculate(Integer i) {
         return executor.submit(() -> {
-            LOGGER.info("Calculating the square of {} ... (It will take time about 3 seconds)", input);
+            logger.info("Calculating result ...");
             Thread.sleep(3000);
-            return input * input;
+            return i * i;
         });
     }
 
     public void shutdown() {
         executor.shutdown();
-        LOGGER.info("Executor service is shutdown successfully!");
+        logger.info("Executor service is shutdown successfully!");
     }
 }
