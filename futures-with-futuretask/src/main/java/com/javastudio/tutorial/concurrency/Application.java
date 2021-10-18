@@ -12,14 +12,14 @@ public class Application {
     public static void main(String[] args) {
         try {
 //            simulateExecutorServiceSample3();
-            simulateForkJoinTask();
+            simulateRecursiveTask();
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
         }
         LOGGER.info("Simulate is finished!");
     }
 
-    private static void simulateForkJoinTask() throws ExecutionException, InterruptedException {
+    private static void simulateRecursiveTask() throws ExecutionException, InterruptedException {
         ForkJoinPool forkJoinPool = new ForkJoinPool();
         FactorialSquareCalculator calculator = new FactorialSquareCalculator(10L);
         forkJoinPool.execute(calculator);
