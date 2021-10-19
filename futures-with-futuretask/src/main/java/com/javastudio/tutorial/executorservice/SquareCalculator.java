@@ -1,4 +1,4 @@
-package com.javastudio.tutorial.concurrency;
+package com.javastudio.tutorial.executorservice;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

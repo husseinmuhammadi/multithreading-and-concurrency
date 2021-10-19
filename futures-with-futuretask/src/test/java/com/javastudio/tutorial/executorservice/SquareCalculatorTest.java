@@ -1,4 +1,4 @@
-package com.javastudio.tutorial.concurrency;
+package com.javastudio.tutorial.executorservice;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

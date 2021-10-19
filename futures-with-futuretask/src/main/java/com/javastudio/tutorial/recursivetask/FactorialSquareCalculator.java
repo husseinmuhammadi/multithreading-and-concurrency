@@ -1,4 +1,4 @@
-package com.javastudio.tutorial.concurrency;
+package com.javastudio.tutorial.recursivetask;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +11,7 @@ public class FactorialSquareCalculator extends RecursiveTask<Long> {
 
     private Long n;
 
-    FactorialSquareCalculator(Long n) {
+    public FactorialSquareCalculator(Long n) {
         this.n = n;
     }
 
