@@ -49,7 +49,6 @@
     </properties>
 
     <modules>
-        <module>logger</module>
         <module>thread-synchronization</module>
         <module>thread-synchronization-by-value</module>
         <module>simulate-thread-deadlock</module>
@@ -58,6 +57,7 @@
         <module>atomic-operations-and-multithreading</module>
         <module>lock-in-multithreading</module>
         <module>fork-join</module>
+        <module>wait-notify</module>
     </modules>
 
     <dependencyManagement>
@@ -107,6 +107,12 @@
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.javastudio.tutorial.concurrency</groupId>
+                <artifactId>multithreading-and-concurrency-logging-configuration</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

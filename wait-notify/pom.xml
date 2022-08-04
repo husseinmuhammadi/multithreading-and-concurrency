@@ -3,33 +3,23 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>com.javastudio.tutorial.concurrency</groupId>
         <artifactId>multithreading-and-concurrency-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>fork-join</artifactId>
+    <artifactId>wait-notify</artifactId>
 
     <properties>
-        <main-class>com.javastudio.tutorial.concurrency.Application</main-class>
+        <main-class>com.javastudio.tutorial.wait.DemoApplication</main-class>
     </properties>
-
-    <build>
-       <plugins>
-           <plugin>
-               <groupId>org.apache.maven.plugins</groupId>
-               <artifactId>maven-jar-plugin</artifactId>
-           </plugin>
-       </plugins>
-    </build>
 
     <dependencies>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <scope>runtime</scope>
         </dependency>
     </dependencies>
+
 </project>
