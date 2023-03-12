@@ -19,7 +19,7 @@ class ArithmeticOperationThreadSafetyTest {
     }
 
     @Test
-    void name() throws Exception {
+    void should_increase_2_billion_times() throws Exception {
         new Thread(this::increase, "Thread-1").start();
         new Thread(this::increase, "Thread-2").start();
 
