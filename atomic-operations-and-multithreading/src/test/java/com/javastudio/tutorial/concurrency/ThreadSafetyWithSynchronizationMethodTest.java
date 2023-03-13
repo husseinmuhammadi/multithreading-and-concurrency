@@ -4,15 +4,15 @@ import org.junit.jupiter.api.Test;
 
 import java.text.MessageFormat;
 
-class ArithmeticOperationThreadSafetyTest {
+class ThreadSafetyWithSynchronizationMethodTest {
 
-    int count = 0;
+    static int count = 0;
 
-    void increase() {
+    private synchronized void increase() {
         System.out.println(MessageFormat.format("Thread {0} started.", Thread.currentThread().getName()));
 
         for (int i = 0; i < 1000000000; i++) {
-            count++;
+                count++;
         }
 
         System.out.println(MessageFormat.format("Thread {0} finished.", Thread.currentThread().getName()));
@@ -24,6 +24,6 @@ class ArithmeticOperationThreadSafetyTest {
         new Thread(this::increase, "Thread-2").start();
 
         Thread.sleep(3000);
-        System.out.println("Index: "+ this.count);
+        System.out.println("Index: " + count);
     }
 }
