@@ -58,6 +58,7 @@
         <module>atomic-operations-and-multithreading</module>
         <module>lock-in-multithreading</module>
         <module>fork-join</module>
+        <module>yield</module>
     </modules>
 
     <dependencyManagement>
