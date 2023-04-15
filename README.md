@@ -2,12 +2,14 @@
 A brief demo of multithreading and concurrency in java and javaee
 
 ## Thread Fundamentals
+
 ### yield
 [readme](./yield/README.md)
 
 ## Thread safety
 ### Immutable 
 ### Atomic
+[operand](atomic-operations-and-multithreading)
 
 ## Locks
 
