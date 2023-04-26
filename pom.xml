@@ -13,16 +13,16 @@
     <properties>
         <java.version>11</java.version>
 
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
 
-        <junit.version>4.13.2</junit.version>
+        <endorsed.dir>endorsed</endorsed.dir>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <junit-jupiter.version>5.8.2</junit-jupiter.version>
         <assertj.version>3.21.0</assertj.version>
+        <junit.version>4.13.2</junit.version>
         <mockito.version>4.0.0</mockito.version>
-
         <slf4j.version>1.7.36</slf4j.version>
         <logback.version>1.2.10</logback.version>
 
@@ -49,7 +49,6 @@
     </properties>
 
     <modules>
-        <module>logger</module>
         <module>thread-synchronization</module>
         <module>thread-synchronization-by-value</module>
         <module>simulate-thread-deadlock</module>
@@ -58,6 +57,7 @@
         <module>atomic-operations-and-multithreading</module>
         <module>lock-in-multithreading</module>
         <module>fork-join</module>
+        <module>wait-notify</module>
     </modules>
 
     <dependencyManagement>
@@ -66,6 +66,7 @@
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
+                <scope>test</scope>
             </dependency>
 
             <dependency>
@@ -107,10 +108,18 @@
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.javastudio.tutorial.concurrency</groupId>
+                <artifactId>multithreading-and-concurrency-logging-configuration</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <build>
+        <finalName>demo</finalName>
+
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -129,7 +138,6 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -12,24 +12,17 @@
 
     <artifactId>fork-join</artifactId>
 
+    <properties>
+        <main-class>com.javastudio.tutorial.concurrency.Application</main-class>
+    </properties>
+
     <build>
-        <finalName>demo</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.2.0</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                            <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.javastudio.tutorial.concurrency.Application</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-        </plugins>
+       <plugins>
+           <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-jar-plugin</artifactId>
+           </plugin>
+       </plugins>
     </build>
 
     <dependencies>
@@ -37,12 +30,6 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <scope>runtime</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.javastudio.tutorial.concurrency</groupId>
-            <artifactId>multithreading-and-concurrency-logging-configuration</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>
