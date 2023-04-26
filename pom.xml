@@ -58,6 +58,7 @@
         <module>lock-in-multithreading</module>
         <module>fork-join</module>
         <module>wait-notify</module>
+        <module>yield</module>
     </modules>
 
     <dependencyManagement>
