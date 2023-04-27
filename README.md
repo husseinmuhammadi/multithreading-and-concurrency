@@ -6,6 +6,9 @@ A brief demo of multithreading and concurrency in java and javaee
 ### yield
 [readme](./yield/README.md)
 
+### wait, notify and notifyAll
+[readme](./thread-fundamentals/README.md)
+
 ## Thread safety
 ### Immutable 
 ### Atomic
