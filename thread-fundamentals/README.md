@@ -1,5 +1,14 @@
 # Thread Fundamentals
 
+## Thread Synchronization in Java
+
+In a multithreaded environment, multiple threads might try to modify the same resource. Not managing threads properly
+will of course lead to consistency issues.
+
+We can better understand this from the following diagram depicting the life cycle of a Thread:
+
+![Thread life cycle](./src/main/resources/thread-life-cycle.jpg)
+
 ## Wait, Notify and NotifyAll in Java
 
 The wait() and notify() are methods of the Object class. They were introduced to part ways with polling, which is the
