@@ -59,6 +59,9 @@
         <module>fork-join</module>
         <module>wait-notify</module>
         <module>yield</module>
+
+        <!-- Executor -->
+        <module>executor-completion-service</module>
     </modules>
 
     <dependencyManagement>
