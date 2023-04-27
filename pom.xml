@@ -61,7 +61,7 @@
         <module>yield</module>
 
         <!-- Executor -->
-        <module>executor-completion-service</module>
+        <module>executor/executor-completion-service</module>
     </modules>
 
     <dependencyManagement>
