@@ -62,6 +62,9 @@
 
         <!-- Executor -->
         <module>executor/executor-completion-service</module>
+
+        <!-- Wait Notify -->
+        <module>fizz-buzz-multithreaded</module>
     </modules>
 
     <dependencyManagement>
