@@ -49,6 +49,17 @@
     </properties>
 
     <modules>
+        <!-- Fundamental of Java Multi-threading -->
+
+
+        <!-- Thread safety -->
+        <module>synchronization</module>
+
+
+        <!-- Troubleshooting -->
+
+
+        <!-- Lock -->
         <module>thread-synchronization</module>
         <module>thread-synchronization-by-value</module>
         <module>simulate-thread-deadlock</module>
