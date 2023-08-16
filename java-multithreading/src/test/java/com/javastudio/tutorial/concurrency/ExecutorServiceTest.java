@@ -1,6 +1,7 @@
 package com.javastudio.tutorial.concurrency;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.internal.verification.Calls;
 
 import java.time.temporal.ChronoUnit;
 import java.util.Random;
@@ -160,7 +161,16 @@ public class ExecutorServiceTest {
      */
     @Test
     void cancel_task_in_waiting_queue() {
+        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
+        Runnable task = () -> System.out.println(Thread.currentThread().getName());
+
+        ScheduledFuture<?> future = executorService.schedule(task, 5, TimeUnit.SECONDS);
+
+        System.out.println("Before Cancel - Task is done : " + future.isDone());
+        System.out.println("Before Cancel - Task is cancel : " + future.isCancelled());
+
+        executorService.shutdown();
     }
 
     @Test
