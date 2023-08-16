@@ -1,7 +1,6 @@
 package com.javastudio.tutorial.concurrency;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.internal.verification.Calls;
 
 import java.time.temporal.ChronoUnit;
 import java.util.Random;
@@ -13,8 +12,17 @@ public class ExecutorServiceTest {
     private static final int THREAD_POOL_THREAD_COUNT = 10;
 
     @Test
-    void executor_service_will_run_on_different_thread() {
+    void executor_service_will_run_on_different_thread() throws InterruptedException {
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
 
+        Runnable task = () -> {
+            System.out.println(Thread.currentThread().getName());
+        };
+
+        executorService.execute(task);
+
+        Thread.sleep(100);
+        executorService.shutdown();
     }
 
     @Test
@@ -22,7 +30,8 @@ public class ExecutorServiceTest {
         Runnable runnable = () -> System.out.println(Thread.currentThread().getName());
 
         ExecutorService executorService = Executors.newFixedThreadPool(THREAD_POOL_THREAD_COUNT);
-        IntStream.rangeClosed(1, 10).mapToObj(String::valueOf).map(i -> runnable).forEach(executorService::submit);
+        IntStream.rangeClosed(1, 10).mapToObj(String::valueOf).map(i -> runnable)
+                .forEach(executorService::submit);
         TimeUnit.of(ChronoUnit.MILLIS).sleep(200);
         executorService.shutdown();
     }
@@ -50,7 +59,7 @@ public class ExecutorServiceTest {
     }
 
     @Test
-    void executor_service_with_fix_thread_pool_should_run_on_() throws InterruptedException {
+    void executor_service_with_fix_thread_pool_should_run_on_different_threads() throws InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(THREADS_COUNT);
 
         for (int i = 0; i < THREADS_COUNT; i++) {
@@ -126,18 +135,20 @@ public class ExecutorServiceTest {
     void shutdown_executor_service_will_not_interrupt_the_threads() throws InterruptedException {
         ExecutorService executorService = Executors.newSingleThreadExecutor();
 
-        executorService.submit(() -> {
+        Runnable task = () -> {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(3000);
                 System.out.println("I am finished.--" + Thread.currentThread().getName());
             } catch (InterruptedException e) {
                 System.out.println("I am interrupted.--" + Thread.currentThread().getName());
             }
-        });
+        };
+
+        executorService.submit(task);
 
         executorService.shutdown();
         System.out.println("Executor service shutdown completed!");
-        Thread.sleep(3000);
+        Thread.sleep(5000);
     }
 
     @Test
@@ -146,7 +157,7 @@ public class ExecutorServiceTest {
 
         executorService.submit(() -> {
             try {
-                Thread.sleep(400);
+                Thread.sleep(3000);
                 System.out.println("I am finished .--" + Thread.currentThread().getName());
             } catch (InterruptedException e) {
                 System.out.println("I am interrupted.--" + Thread.currentThread().getName());
@@ -170,18 +181,53 @@ public class ExecutorServiceTest {
         System.out.println("Before Cancel - Task is done : " + future.isDone());
         System.out.println("Before Cancel - Task is cancel : " + future.isCancelled());
 
+        if (future.isDone() == false) {
+            // If the task has been completed or has been canceled earlier, or it can’t be cancelled due to any other reason,
+            // the method will return the false value and the task won’t be canceled.
+            // If the task is waiting in the queue to begin execution, the task will be canceled
+            // and will never begin its execution. The method will return true.
+            boolean canceled = future.cancel(false);
+            System.out.println("Tasked canceled: " + canceled);
+        }
+
+        System.out.println("Before Cancel - Task is done : " + future.isDone());
+        System.out.println("Before Cancel - Task is cancel : " + future.isCancelled());
+
         executorService.shutdown();
     }
 
+    /**
+     * If the task is already running and the value of mayInterruptIfRunning parameter is true,
+     * InterruptedException is sent to the thread in an attempt to stop the task.
+     * Therefore, task must periodically check for interrupt status and stop working if it is true.
+     * If the task is already running and the value of mayInterruptIfRunning parameter is false,
+     * the thread will NOT be interrupted.
+     */
     @Test
-    void cancelling_a_task_in_execution() {
+    void cancelling_a_task_in_execution() throws InterruptedException {
         ExecutorService executorService = Executors.newSingleThreadExecutor();
 
-        executorService.submit(() -> {
+        Runnable task = () -> {
+            try {
+                System.out.println("I am started!");
+                Thread.sleep(1000);
+                System.out.println("I am done.--" + Thread.currentThread().getName());
+            } catch (InterruptedException e) {
+                System.out.println("I am interrupted.--" + Thread.currentThread().getName());
+            }
+        };
 
-        });
+        Future<?> future = executorService.submit(task);
+        System.out.println("Task started.");
+
+        Thread.sleep(200);
+        boolean canceled = future.cancel(false);
+        System.out.println("Task canceled: " + canceled);
 
         executorService.shutdown();
+        System.out.println("Executor service is shutdown.");
+
+        Thread.sleep(3000);
     }
 
     /**
