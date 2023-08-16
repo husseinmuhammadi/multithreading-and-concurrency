@@ -121,6 +121,40 @@ public class ExecutorServiceTest {
         executorService.shutdown();
     }
 
+    @Test
+    void shutdown_executor_service_will_not_interrupt_the_threads() throws InterruptedException {
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+        executorService.submit(() -> {
+            try {
+                Thread.sleep(1000);
+                System.out.println("I am finished.--" + Thread.currentThread().getName());
+            } catch (InterruptedException e) {
+                System.out.println("I am interrupted.--" + Thread.currentThread().getName());
+            }
+        });
+
+        executorService.shutdown();
+        System.out.println("Executor service shutdown completed!");
+        Thread.sleep(3000);
+    }
+
+    @Test
+    void shutdown_now_executor_service_will_interrupt_the_threads() {
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+        executorService.submit(() -> {
+            try {
+                Thread.sleep(400);
+                System.out.println("I am finished .--" + Thread.currentThread().getName());
+            } catch (InterruptedException e) {
+                System.out.println("I am interrupted.--" + Thread.currentThread().getName());
+            }
+        });
+
+        executorService.shutdownNow();
+    }
+
     /**
      * https://howtodoinjava.com/java/multi-threading/executor-service-cancel-task/
      */
@@ -144,8 +178,8 @@ public class ExecutorServiceTest {
      * https://stackoverflow.com/questions/70152050/how-to-find-the-result-of-first-thread-that-finishes-successfully-in-java
      */
     @Test
-    void proceed_with_the_result_of_first_thread() {
-        Callable<Integer> callable = () -> {
+    void proceed_with_the_result_of_first_thread() throws Exception {
+        Callable<Integer> task = () -> {
             int nextInt = new Random().nextInt(10000);
             try {
                 System.out.println("I will cost " + nextInt + " ms to finish job.--" + Thread.currentThread().getName());
@@ -157,5 +191,18 @@ public class ExecutorServiceTest {
             System.out.println("I am finish.--" + Thread.currentThread().getName());
             return nextInt;
         };
+
+        final int numOfThreads = 3;
+        ExecutorService executorService = Executors.newFixedThreadPool(numOfThreads);
+        CompletionService<Integer> completionService = new ExecutorCompletionService<>(executorService);
+
+        for (int i = 0; i < numOfThreads; i++) {
+            completionService.submit(task);
+        }
+
+        int firstValue = completionService.take().get();
+        System.out.println("First value: " + firstValue);
+
+        executorService.shutdownNow();
     }
 }
